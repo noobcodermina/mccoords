@@ -1,0 +1,56 @@
+@import '@fontsource-variable/google-sans';
+
+:root {
+	--black-bg: #141414;
+	--white-bg: #fff;
+	--gray-bg: #a6a6a6;
+
+	--text-primary: #fff;
+	--text-secondary: #a6a6a6;
+
+	--spacing-none: 0;
+	--spacing-sm: 0.25rem;
+	--spacing-md: 0.5rem;
+	--spacing-lg: 0.75rem;
+	--spacing-xl: 1rem;
+}
+
+* {
+	margin: var(--spacing-none);
+	padding: var(--spacing-none);
+
+	box-sizing: border-box;
+}
+
+body {
+	background: var(--black-bg);
+	font-family: 'Google Sans Variable', sans-serif;
+}
+button {
+	font: inherit;
+}
+h1 {
+	color: var(--text-primary);
+}
+p {
+	color: var(--text-secondary);
+}
+
+.flex-center-row,
+.flex-center-column,
+.flex-between-row,
+.flex-between-column {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.flex-center-column {
+	flex-direction: column;
+}
+.flex-between-row {
+	justify-content: space-between;
+}
+.flex-between-column {
+	flex-direction: column;
+	justify-content: space-between;
+}
