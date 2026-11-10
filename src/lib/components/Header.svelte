@@ -1,28 +1,46 @@
 <script>
-	import Button from './Button.svelte';
+	import Github from '#lib/assets/Github.svelte';
+	import Logo from './Logo.svelte';
+
+	import shared from '#lib/shared.svelte.ts';
 </script>
 
 <header class="flex-between-row">
-	<p><span></span> mccoords</p>
+	<Logo />
+	<nav class="flex-center-row">
+		<p
+			role="presentation"
+			onclick={() => {
+				shared.isDashboardVisible = true;
+			}}
+		>
+			Dashboard
+		</p>
+		<Github
+			class="github-svg"
+			onclick={() => {
+				window.open('https://github.com/noobcodermina/mccoords', '_blank');
+			}}
+		/>
+	</nav>
 </header>
 
 <style>
 	header {
 		position: fixed;
+		top: 0;
 		width: min(100%, 1200px);
 		padding: calc(var(--spacing-lg) * 2);
+		nav {
+			gap: calc(var(--spacing-lg) * 2);
+		}
 		p {
-			color: white;
-			font-weight: bold;
-
-			span {
-				display: block;
-				width: 16px;
-				height: 16px;
-				background-color: greenyellow;
-				border-radius: 4px;
-				box-shadow: 0 0 20px 1px greenyellow;
-			}
+			cursor: pointer;
+			color: var(--text-primary);
+			font-weight: var(--text-bold);
+		}
+		:global(.github-svg) {
+			cursor: pointer;
 		}
 	}
 </style>

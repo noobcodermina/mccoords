@@ -8,11 +8,36 @@
 	--text-primary: #fff;
 	--text-secondary: #a6a6a6;
 
+	--green: #adff2f;
+	--blue: #4169e1;
+	--orange: #ffa500;
+	--black: #000;
+
+	--text-bold: 700;
+
 	--spacing-none: 0;
 	--spacing-sm: 0.25rem;
 	--spacing-md: 0.5rem;
 	--spacing-lg: 0.75rem;
 	--spacing-xl: 1rem;
+
+	--text-sm: 0.95rem;
+	--text-lg: 1.5rem;
+
+	--radius-xs: 0.25rem;
+	--radius-sm: 0.5rem;
+	--radius-md: 0.75rem;
+	--radius-lg: 1rem;
+	--radius-full: 9999px;
+
+	--glow-green: 0 0 20px 1px var(--green);
+	--glow-blue: 0 0 20px 1px var(--blue);
+	--glow-orange: 0 0 20px 1px var(--orange);
+	--glow-grey: 0 0 20px 1px #808080;
+
+	--border-black: 1px solid var(--black);
+
+	--transition: 0.2s;
 }
 
 * {
@@ -28,6 +53,7 @@ body {
 }
 button {
 	font: inherit;
+	user-select: none;
 }
 h1 {
 	color: var(--text-primary);

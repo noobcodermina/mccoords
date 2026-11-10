@@ -2,76 +2,66 @@
 	import WelcomeBookmark from '#lib/assets/WelcomeBookmark.svelte';
 	import WelcomePin from '#lib/assets/WelcomePin.svelte';
 	import WelcomeCheck from '#lib/assets/WelcomeCheck.svelte';
-
-	import Header from '#lib/components/Header.svelte';
-
+	import WelcomePlay from '#lib/assets/WelcomePlay.svelte';
 	import Button from '#lib/components/Button.svelte';
+	import WelcomeSquare from '#lib/components/WelcomeSquare.svelte';
+
+	import shared from '#lib/shared.svelte.ts';
 </script>
 
-<div class="welcome-wrapper flex-center-column">
-	<div class="flex-center-row">
-		<div class="pin-rectangle">
-			<WelcomePin />
+{#if shared.isDashboardVisible === false}
+	<div class="welcome-wrapper flex-center-column">
+		<div class="flex-center-row">
+			<WelcomeSquare variant="blue">
+				<WelcomePin />
+			</WelcomeSquare>
+			<WelcomeSquare variant="green">
+				<WelcomeBookmark />
+			</WelcomeSquare>
+			<WelcomeSquare variant="orange">
+				<WelcomeCheck />
+			</WelcomeSquare>
 		</div>
-		<div class="save-rectangle">
-			<WelcomeBookmark />
-		</div>
-		<div class="check-rectangle">
-			<WelcomeCheck />
-		</div>
-	</div>
-	<h1>
-		Coordinates <span class="as">saving</span> <br /> made <span class="colored-text">simple</span>
-	</h1>
-	<p>Super simple way to save your Minecraft coordinates</p>
+		<h1>
+			Coordinates <span class="as">saving</span> <br /> made
+			<span class="colored-welcome-text">simple</span>
+		</h1>
+		<p>Super simple way to save your Minecraft coordinates</p>
 
-	<Button></Button>
-</div>
+		<Button
+			onclick={() => {
+				shared.isDashboardVisible = true;
+			}}>Continue to dashboard <WelcomePlay /></Button
+		>
+	</div>
+{:else}
+	<div class="dashboard-wrapper">
+		<p>just a dashboard</p>
+	</div>
+{/if}
 
 <style>
 	.welcome-wrapper {
 		width: 100%;
-		height: 100dvh;
+		height: calc(100dvh - calc(var(--spacing-lg) * 5));
 		gap: calc(var(--spacing-lg) * 2);
 		h1 {
 			text-align: center;
-			font-size: 3rem;
+			font-size: calc(var(--text-lg) * 2);
 			line-height: 2.8rem;
 
-			.colored-text {
-				color: #adff2f;
+			.colored-welcome-text {
+				color: var(--green);
+				font-weight: var(--bold);
 				font-style: italic;
-				font-weight: bold;
 			}
 		}
-		.save-rectangle {
-			width: 80px;
-			height: 80px;
-			transform: rotate(45deg);
-			background-color: #adff2f;
-			border-radius: 2rem;
-			animation: pulse 3s infinite ease-in;
-			box-shadow: 0 0 20px 2px yellowgreen;
-			padding: 1.2rem;
+		p {
+			text-align: center;
 		}
-		.pin-rectangle {
-			width: 80px;
-			height: 80px;
-			background-color: #4169e1;
-			border-radius: 2rem;
-			animation: pulse 3s infinite ease-in;
-			box-shadow: 0 0 20px 2px #4169e1;
-			padding: 1.2rem;
-		}
+	}
 
-		.check-rectangle {
-			width: 80px;
-			height: 80px;
-			background-color: orange;
-			border-radius: 2rem;
-			box-shadow: 0 0 20px 2px orange;
-			padding: 1.2rem;
-			animation: pulse 3s infinite ease-in;
-		}
+	.dashboard-wrapper {
+		padding: calc(var(--spacing-lg) * 2);
 	}
 </style>

@@ -12,6 +12,8 @@
 <svelte:head>
 	<link rel="icon" href={favicon} />
 </svelte:head>
+
+<div class="separator"></div>
 <div class="page-wrapper">
 	<Header></Header>
 	{@render children()}
@@ -21,5 +23,9 @@
 	.page-wrapper {
 		width: min(100%, 1200px);
 		margin: auto;
+	}
+	.separator {
+		display: block;
+		height: calc(var(--spacing-lg) * 5);
 	}
 </style>
