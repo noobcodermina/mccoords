@@ -5,8 +5,8 @@ here is a full recipe how to have this mf on your mf pc
 if u want to have this mf on your pc do this:
 
 ### make new dir and go to that dir
-mkdir mccoords
-cd mccoords
+mkdir mccoords <br>
+cd mccoords <br>
 
 ### download this mf from github (clone from clash royale)
 git clone https://github.com/noobcodermina/mccoords.git
