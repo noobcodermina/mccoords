@@ -31,6 +31,7 @@
 		top: 0;
 		width: min(100%, 1200px);
 		padding: calc(var(--spacing-lg) * 2);
+
 		nav {
 			gap: calc(var(--spacing-lg) * 2);
 		}
