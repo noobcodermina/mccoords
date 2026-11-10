@@ -1,56 +1,21 @@
-# sv
+here is a full recipe how to have this mf on your mf pc
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+if u want to have this mf on your pc do this:
 
-## Creating a project
+//make new dir and go to that dir
+mkdir mccoords
+cd mccoords
 
-If you're seeing this, you've probably already done this step. Congrats!
+//download this mf from github (clone from clash royale)
+git clone https://github.com/noobcodermina/mccoords.git
 
-```sh
-# create a new project
-npx sv create my-app
-```
+//install all the stuff that i installed in this project
+npm i
 
-To recreate this project with the same configuration:
-
-```sh
-# recreate this project
-npx sv@1.3.0 create --template minimal --types ts --add eslint prettier --install npm ./
-```
-
-## Adding features
-
-Add features to your project with `sv add`:
-
-```sh
-npx sv add
-```
-
-For example, to add Tailwind CSS:
-
-```sh
-npx sv add tailwindcss
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
+//run this normie and open the browser to see this 1/6 psl score normie
 npm run dev -- --open
-```
 
-## Building
+//this shi opens the code editor with the code that i wrote (yeah good luck cuz i dont fucking know what i did here)
+code . (i use vscode so yeah lol)
 
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+enjoy and feel free to tell me if you dont like something
