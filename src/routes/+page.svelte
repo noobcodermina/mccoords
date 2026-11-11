@@ -36,7 +36,22 @@
 	</div>
 {:else}
 	<div class="dashboard-wrapper">
-		<p>just a dashboard</p>
+		<h2>My coordinates</h2>
+		<p>My ID: 223402</p>
+		<div class="coordinates-wrapper">
+			<div>
+				<p>House <span>overworld</span></p>
+				<p>120/21/2002</p>
+			</div>
+			<div>
+				<p>House <span>overworld</span></p>
+				<p>120/21/2002</p>
+			</div>
+			<div>
+				<p>House <span>overworld</span></p>
+				<p>120/21/2002</p>
+			</div>
+		</div>
 	</div>
 {/if}
 
@@ -63,5 +78,13 @@
 
 	.dashboard-wrapper {
 		padding: calc(var(--spacing-lg) * 2);
+		h2 {
+			color: var(--text-primary);
+		}
+		.coordinates-wrapper {
+			div {
+				padding: var(--spacing-md) 0;
+			}
+		}
 	}
 </style>
