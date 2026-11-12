@@ -5,6 +5,10 @@
 	import WelcomePlay from '#lib/assets/WelcomePlay.svelte';
 	import Button from '#lib/components/Button.svelte';
 	import WelcomeSquare from '#lib/components/WelcomeSquare.svelte';
+	import Discord from '#lib/assets/Discord.svelte';
+	import Heart from '#lib/assets/Heart.svelte';
+
+	import Input from '#lib/components/Input.svelte';
 
 	import shared from '#lib/shared.svelte.ts';
 </script>
@@ -37,19 +41,23 @@
 {:else}
 	<div class="dashboard-wrapper">
 		<h2>My coordinates</h2>
-		<p>My ID: 223402</p>
+		<div class="flex-center-row dashboard-ib-wrapper">
+			<Input placeholder="Search" />
+			<Button smallGlow><Heart /> Add coordinates</Button>
+			<Button smallGlow discord><Discord /> Discord bot</Button>
+		</div>
 		<div class="coordinates-wrapper">
 			<div>
-				<p>House <span>overworld</span></p>
-				<p>120/21/2002</p>
+				<p class="coordinate-title">House <span class="coordinate-dimension">[overworld]</span></p>
+				<p class="coordinate-coordinates">120 21 -2002</p>
 			</div>
 			<div>
-				<p>House <span>overworld</span></p>
-				<p>120/21/2002</p>
+				<p class="coordinate-title">House <span class="coordinate-dimension">[overworld]</span></p>
+				<p class="coordinate-coordinates">120 21 -2002</p>
 			</div>
 			<div>
-				<p>House <span>overworld</span></p>
-				<p>120/21/2002</p>
+				<p class="coordinate-title">House <span class="coordinate-dimension">[overworld]</span></p>
+				<p class="coordinate-coordinates">120 21 -2002</p>
 			</div>
 		</div>
 	</div>
@@ -78,13 +86,34 @@
 
 	.dashboard-wrapper {
 		padding: calc(var(--spacing-lg) * 2);
+		margin-top: calc(var(--spacing-lg) * 3);
+
 		h2 {
 			color: var(--text-primary);
 		}
 		.coordinates-wrapper {
+			margin-top: calc(var(--spacing-lg) * 3);
 			div {
 				padding: var(--spacing-md) 0;
+				.coordinate-title {
+					color: var(--text-primary);
+					font-weight: var(--text-bold);
+				}
+				.coordinate-dimension {
+					color: var(--text-secondary);
+					font-weight: normal;
+					font-style: italic;
+					font-size: var(--text-sm);
+				}
+				.coordinate-coordinates {
+					margin-top: var(--spacing-sm);
+				}
 			}
+		}
+		.dashboard-ib-wrapper {
+			margin-top: calc(var(--spacing-lg) * 3);
+			justify-content: flex-start;
+			gap: var(--spacing-lg);
 		}
 	}
 </style>

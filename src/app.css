@@ -12,6 +12,8 @@
 	--blue: #4169e1;
 	--orange: #ffa500;
 	--black: #000;
+	--light-gray: #7d7c7c;
+	--dark-gray: #252525;
 
 	--text-bold: 700;
 
@@ -35,7 +37,11 @@
 	--glow-orange: 0 0 20px 1px var(--orange);
 	--glow-grey: 0 0 20px 1px #808080;
 
+	--glow-grey-small: 0 0 5px 1px #808080;
+	--glow-blue-small: 0 0 5px 1px var(--blue);
+
 	--border-black: 1px solid var(--black);
+	--border-gray: 1px solid var(--light-gray);
 
 	--transition: 0.2s;
 }
@@ -55,6 +61,7 @@ button {
 	font: inherit;
 	user-select: none;
 }
+
 h1 {
 	color: var(--text-primary);
 }
