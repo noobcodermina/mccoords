@@ -5,12 +5,36 @@
 	import WelcomePlay from '#lib/assets/WelcomePlay.svelte';
 	import Button from '#lib/components/Button.svelte';
 	import WelcomeSquare from '#lib/components/WelcomeSquare.svelte';
-	import Discord from '#lib/assets/Discord.svelte';
-	import Heart from '#lib/assets/Heart.svelte';
-
 	import Input from '#lib/components/Input.svelte';
-
+	import Popup from '#lib/components/Popup.svelte';
 	import shared from '#lib/shared.svelte.ts';
+
+	//some search stuff that works somehow idfk know how lmao
+	let userInput = $state('');
+	let mockData = $state([
+		{
+			id: 1,
+			title: 'House',
+			dimension: 'overworld',
+			coordinates: { x: 120, y: 21, z: -2002 }
+		},
+		{
+			id: 2,
+			title: 'Nether Portal',
+			dimension: 'nether',
+			coordinates: { x: 15, y: 64, z: -250 }
+		},
+		{
+			id: 3,
+			title: 'Village',
+			dimension: 'overworld',
+			coordinates: { x: -340, y: 70, z: 815 }
+		}
+	]);
+
+	let filtered = $derived(
+		mockData.filter((i) => i.title.toLowerCase().includes(userInput.toLowerCase()))
+	);
 </script>
 
 {#if shared.isDashboardVisible === false}
@@ -42,23 +66,25 @@
 	<div class="dashboard-wrapper">
 		<h2>My coordinates</h2>
 		<div class="flex-center-row dashboard-ib-wrapper">
-			<Input placeholder="Search" />
-			<Button smallGlow><Heart /> Add coordinates</Button>
-			<Button smallGlow discord><Discord /> Discord bot</Button>
+			<Input placeholder="Search" bind:value={userInput} />
+			<Popup />
 		</div>
 		<div class="coordinates-wrapper">
-			<div>
-				<p class="coordinate-title">House <span class="coordinate-dimension">[overworld]</span></p>
-				<p class="coordinate-coordinates">120 21 -2002</p>
-			</div>
-			<div>
-				<p class="coordinate-title">House <span class="coordinate-dimension">[overworld]</span></p>
-				<p class="coordinate-coordinates">120 21 -2002</p>
-			</div>
-			<div>
-				<p class="coordinate-title">House <span class="coordinate-dimension">[overworld]</span></p>
-				<p class="coordinate-coordinates">120 21 -2002</p>
-			</div>
+			{#each filtered as mock, i (i)}
+				<div>
+					<p class="coordinate-title">
+						{mock.title} <span class="coordinate-dimension">[{mock.dimension}]</span>
+					</p>
+					<p class="coordinate-coordinates">
+						{mock.coordinates.x}
+						{mock.coordinates.y}
+						{mock.coordinates.z}
+					</p>
+				</div>
+			{/each}
+			{#if filtered.length == 0}
+				<p>no results :p</p>
+			{/if}
 		</div>
 	</div>
 {/if}

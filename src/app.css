@@ -62,6 +62,10 @@ button {
 	user-select: none;
 }
 
+input {
+	font: inherit;
+}
+
 h1 {
 	color: var(--text-primary);
 }

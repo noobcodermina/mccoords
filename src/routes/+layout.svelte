@@ -11,6 +11,8 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
+	<title>mccoords - save Minecraft coordinates</title>
+	<meta name="description" content="just a super simple way to save MC coordinates locally" />
 </svelte:head>
 
 <div class="separator"></div>
