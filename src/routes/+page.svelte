@@ -8,32 +8,28 @@
 	import Input from '#lib/components/Input.svelte';
 	import Popup from '#lib/components/Popup.svelte';
 	import shared from '#lib/shared.svelte.ts';
+	import { onMount } from 'svelte';
 
 	//some search stuff that works somehow idfk know how lmao
 	let userInput = $state('');
-	let mockData = $state([
-		{
-			id: 1,
-			title: 'House',
-			dimension: 'overworld',
-			coordinates: { x: 120, y: 21, z: -2002 }
-		},
-		{
-			id: 2,
-			title: 'Nether Portal',
-			dimension: 'nether',
-			coordinates: { x: 15, y: 64, z: -250 }
-		},
-		{
-			id: 3,
-			title: 'Village',
-			dimension: 'overworld',
-			coordinates: { x: -340, y: 70, z: 815 }
-		}
-	]);
+
+	interface Coordinate {
+		title: string;
+		coordinates: {
+			x: string;
+			y: string;
+			z: string;
+		};
+	}
+
+	let coordinates: Coordinate[] = $state([]);
+
+	onMount(() => {
+		coordinates = JSON.parse(localStorage.getItem('coordinates') ?? '[]');
+	});
 
 	let filtered = $derived(
-		mockData.filter((i) => i.title.toLowerCase().includes(userInput.toLowerCase()))
+		coordinates.filter((i) => i.title.toLowerCase().includes(userInput.toLowerCase()))
 	);
 </script>
 
@@ -73,7 +69,7 @@
 			{#each filtered as mock, i (i)}
 				<div>
 					<p class="coordinate-title">
-						{mock.title} <span class="coordinate-dimension">[{mock.dimension}]</span>
+						{mock.title}
 					</p>
 					<p class="coordinate-coordinates">
 						{mock.coordinates.x}
@@ -83,7 +79,7 @@
 				</div>
 			{/each}
 			{#if filtered.length == 0}
-				<p>no results :p</p>
+				<p>one big nothing :p</p>
 			{/if}
 		</div>
 	</div>
@@ -125,12 +121,6 @@
 					color: var(--text-primary);
 					font-weight: var(--text-bold);
 				}
-				.coordinate-dimension {
-					color: var(--text-secondary);
-					font-weight: normal;
-					font-style: italic;
-					font-size: var(--text-sm);
-				}
 				.coordinate-coordinates {
 					margin-top: var(--spacing-sm);
 				}
@@ -140,6 +130,11 @@
 			margin-top: calc(var(--spacing-lg) * 3);
 			justify-content: flex-start;
 			gap: var(--spacing-lg);
+
+			@media (max-width: 600px) {
+				flex-direction: column;
+				align-items: flex-start;
+			}
 		}
 	}
 </style>

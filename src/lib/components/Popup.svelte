@@ -4,11 +4,50 @@
 
 	import Input from './Input.svelte';
 	import Button from './Button.svelte';
+	import { onMount } from 'svelte';
 	interface PopupProps {
 		isOpen?: boolean;
 	}
 
 	let { isOpen = false }: PopupProps = $props();
+
+	let coordinateTitle = $state('');
+	let xCoordinate = $state('');
+	let yCoordinate = $state('');
+	let zCoordinate = $state('');
+
+	let coordinates = $state(JSON.parse(localStorage.getItem('coordinates') ?? '[]'));
+
+	let saveCoordinates = () => {
+		let inputCoordinates = $state({
+			title: coordinateTitle,
+			coordinates: { x: xCoordinate, y: yCoordinate, z: zCoordinate }
+		});
+
+		coordinates.push(inputCoordinates);
+
+		localStorage.setItem('coordinates', JSON.stringify(coordinates));
+
+		window.location.reload();
+	};
+
+	onMount(() => {
+		document.addEventListener('keydown', (e) => {
+			if (e.key == 'Escape') {
+				isOpen = false;
+			}
+
+			if (e.key == 'Enter') {
+				saveCoordinates();
+			}
+		});
+
+		//if user has no saved coordinates just add them to ls so the error doesnt accur
+
+		if (!coordinates) {
+			localStorage.setItem('coordinates', '');
+		}
+	});
 </script>
 
 <Button
@@ -28,15 +67,21 @@
 		/>
 		<h2>Save coordinates</h2>
 
-		<Input placeholder="Title e.g. House" />
+		<Input placeholder="Title e.g. House" bind:value={coordinateTitle} />
 
 		<div class="popup-input-wrapper">
-			<Input class="coordinate-input" placeholder="X" />
-			<Input class="coordinate-input" placeholder="Y" />
-			<Input class="coordinate-input" placeholder="Z" />
+			<Input class="coordinate-input" bind:value={xCoordinate} placeholder="X" />
+			<Input class="coordinate-input" bind:value={yCoordinate} placeholder="Y" />
+			<Input class="coordinate-input" bind:value={zCoordinate} placeholder="Z" />
 		</div>
 
-		<Button class="save-coordinates-button flex-center-row" smallGlow><Heart /> Save</Button>
+		<Button
+			class="save-coordinates-button flex-center-row"
+			smallGlow
+			onclick={() => {
+				saveCoordinates();
+			}}><Heart /> Save</Button
+		>
 	</div>
 {/if}
 
@@ -45,6 +90,7 @@
 		position: absolute;
 		inset: var(--spacing-lg) var(--spacing-lg) auto auto;
 		z-index: 99999;
+		cursor: pointer;
 	}
 	.popup-wrapper {
 		position: absolute;
