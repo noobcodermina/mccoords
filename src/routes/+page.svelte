@@ -5,6 +5,10 @@
 	import WelcomePlay from '#lib/assets/WelcomePlay.svelte';
 	import Button from '#lib/components/Button.svelte';
 	import WelcomeSquare from '#lib/components/WelcomeSquare.svelte';
+
+	import Pen from '#lib/assets/Pen.svelte';
+	import Trash from '#lib/assets/Trash.svelte';
+
 	import Input from '#lib/components/Input.svelte';
 	import Popup from '#lib/components/Popup.svelte';
 	import shared from '#lib/shared.svelte.ts';
@@ -20,6 +24,7 @@
 			y: string;
 			z: string;
 		};
+		id: string;
 	}
 
 	let coordinates: Coordinate[] = $state([]);
@@ -67,15 +72,25 @@
 		</div>
 		<div class="coordinates-wrapper">
 			{#each filtered as mock, i (i)}
-				<div>
-					<p class="coordinate-title">
-						{mock.title}
-					</p>
-					<p class="coordinate-coordinates">
-						{mock.coordinates.x}
-						{mock.coordinates.y}
-						{mock.coordinates.z}
-					</p>
+				<div class="flex-center-row coordinate-wrapper">
+					<div class="edit-delete-wrapper flex-center-column">
+						<Trash
+							onclick={() => {
+								coordinates = coordinates.filter((item) => item.id !== mock.id);
+								localStorage.setItem('coordinates', JSON.stringify(coordinates));
+							}}
+						/>
+					</div>
+					<div class="flex-start-column">
+						<p class="coordinate-title">
+							{mock.title}
+						</p>
+						<p class="coordinate-coordinates">
+							{mock.coordinates.x}
+							{mock.coordinates.y}
+							{mock.coordinates.z}
+						</p>
+					</div>
 				</div>
 			{/each}
 			{#if filtered.length == 0}
@@ -136,5 +151,14 @@
 				align-items: flex-start;
 			}
 		}
+	}
+
+	.edit-delete-wrapper {
+		width: fit-content;
+	}
+
+	.coordinate-wrapper {
+		width: fit-content;
+		gap: var(--spacing-lg);
 	}
 </style>

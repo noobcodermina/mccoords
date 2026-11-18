@@ -21,7 +21,8 @@
 	let saveCoordinates = () => {
 		let inputCoordinates = $state({
 			title: coordinateTitle,
-			coordinates: { x: xCoordinate, y: yCoordinate, z: zCoordinate }
+			coordinates: { x: xCoordinate, y: yCoordinate, z: zCoordinate },
+			id: coordinates.length
 		});
 
 		coordinates.push(inputCoordinates);
