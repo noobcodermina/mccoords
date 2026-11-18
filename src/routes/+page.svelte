@@ -6,7 +6,6 @@
 	import Button from '#lib/components/Button.svelte';
 	import WelcomeSquare from '#lib/components/WelcomeSquare.svelte';
 
-	import Pen from '#lib/assets/Pen.svelte';
 	import Trash from '#lib/assets/Trash.svelte';
 
 	import Input from '#lib/components/Input.svelte';
